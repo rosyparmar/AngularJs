@@ -1,0 +1,51 @@
+input.form-control {
+    margin-bottom: 3px;
+}
+
+body {
+    padding-top: 65px;
+    padding-bottom: 45px;
+}
+
+.navbar-default {
+    background-color: #337ab7;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+a.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-text {
+    margin-right: 10px;
+    margin-left: 10px;
+    color: white;
+}
+
+.list-group-item {
+    border: 1px solid white;
+}
+
+.jga-widget-tool {
+    position: absolute;
+    right: 15px;
+    background-color: white;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 8px;
+    opacity: 0.7;
+}
+
+.nav-color-tool {
+   color: gray;
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+a:hover{text-decoration:none;}
+a:visited{text-decoration:none;}
