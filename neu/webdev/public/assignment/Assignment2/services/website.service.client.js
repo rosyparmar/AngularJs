@@ -11,12 +11,12 @@
     {
         var websites =
         [
-            {_id: 123, name: "Facebook", developerId: 456, description: "Lorem"},
-            {_id: 234, name: "Twitter", developerId: 456, description: "Lorem"},
-            {_id: 456, name: "Gizmodo", developerId: 456, description: "Lorem"},
-            {_id: 567, name: "Tic Tac Toe", developerId: 123, description: "Lorem"},
-            {_id: 678, name: "Checkers", developerId: 123, description: "Lorem"},
-            {_id: 789, name: "Chess", developerId: 234, description: "Lorem"}
+            {_id: "123", name: "Facebook", developerId: "123", description: "Lorem"},
+            {_id: "234", name: "Twitter", developerId: "234", description: "Lorem"},
+            {_id: "456", name: "Gizmodo", developerId: "456", description: "Lorem"},
+            {_id: "567", name: "Tic Tac Toe", developerId: "123", description: "Lorem"},
+            {_id: "678", name: "Checkers", developerId: "123", description: "Lorem"},
+            {_id: "789", name: "Chess", developerId: "234", description: "Lorem"}
         ];
 
         var api =
@@ -31,23 +31,27 @@
 
         function createWebsite(userId, website)
         {
-            for (var w in websites)
+            var newWebsiteId = getRandomWebsiteId(0, 10000).toString();
+
+            if(!findWebsiteById(newWebsiteId))
             {
-                if (websites[w]._id === wid)
-                {
-                    return websites[w];
-                }
+                website._id = newWebsiteId;
+                websites.push(website);
+                return website;
             }
-            return null;
         }
+
 
         function findWebsiteByUser(userId)
         {
             var result = [];
             for(var w in websites)
             {
-                if(websites[w].uid === uid)
+                //console.log(userId);
+               // console.log(websites[w].developerId );
+                if(websites[w].developerId == userId)
                 {
+                  // console.log("helooooooo");
                     result.push(websites[w]);
                 }
             }
@@ -58,7 +62,7 @@
         {
             for (var w in websites)
             {
-                if (websites[w]._id === wid)
+                if (websites[w]._id === websiteId)
                 {
                     return websites[w];
                 }
@@ -68,26 +72,51 @@
 
         function updateWebsite(websiteId, website)
         {
-            for (var w in websites)
+            for(var w in websites)
             {
-                if (websites[w]._id === wid)
+                websiteIndex = websites[w];
+                if(website._id === websiteId)
                 {
-                    return websites[w];
+                    websites[websiteIndex] = website;
+                    return websites[websiteIndex];
+                }
+                else
+                {
+                    return null;
                 }
             }
-            return null;
         }
 
-        function deleteWebsite(websiteId, website)
+        function deleteWebsite(websiteId)
         {
-            for (var w in websites)
+            var websiteIndex = findWebsiteIndexById(websiteId);
+            if(websiteIndex === null)
             {
-                if (websites[w]._id === wid)
-                {
-                    return websites[w];
-                }
+                return false;
             }
-            return null;
+            else
+            {
+                websites.splice(websiteIndex, 1);
+                return true;
+            }
+        }
+
+        function findWebsiteIndexById(websiteId)
+        {
+            for(var i = 0; i < websites.length; ++i)
+            {
+                if( websites[i]._id === websiteId)
+                    return i;
+            }
+
+            return -1;
+        }
+
+        function getRandomWebsiteId(min, max)
+        {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
         }
 
     }

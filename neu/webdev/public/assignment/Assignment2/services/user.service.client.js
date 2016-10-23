@@ -1,4 +1,5 @@
-(function(){
+(function()
+{
     angular
         .module("WebAppMaker")
         .factory("UserService", UserService);
@@ -26,18 +27,13 @@
 
         function createUser(user)
         {
-            for(var u in users)
+            var newUserId = getRandomId(0, 10000).toString();
+
+            if(!findUserById(newUserId))
             {
-                userIndex = users[u];
-                if(user._id === userId)
-                {
-                    return user;
-                }
-                else
-                {
-                    users[userIndex] = user;
-                    return user;
-                }
+                user._id = newUserId;
+                users.push(user);
+                return user;
             }
         }
 
@@ -83,7 +79,8 @@
 
         function updateUser(userId, user)
         {
-            for(var u in users) {
+            for(var u in users)
+            {
                 userIndex = users[u];
                 if(user._id === userId)
                 {
@@ -97,16 +94,37 @@
             }
         }
 
-        function deleteUser(userId) {
-            for(var u in users) {
-                userIndex = users[u];
-                if(user._id === userId)
-                {
-                    users.splice(userIndex,1);
-                    return users[userIndex];
-                }
+        function deleteUser(userId)
+        {
+            var userIndex = findUserIndexById(userId);
+            if(-1 === userIndex)
+            {
+                return false;
             }
-            return false;
+            else
+            {
+                users.splice(userIndex, 1);
+                return true;
+            }
+        }
+
+        function findUserIndexById(userId)
+        {
+            for(var i = 0; i < users.length; ++i)
+            {
+                if( users[i]._id === userId)
+                    return i;
+            }
+
+            return -1;
+
+        }
+
+        function getRandomId(min, max)
+        {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
         }
 
     }

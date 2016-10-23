@@ -1,33 +1,31 @@
-/**
- * Created by rosyp on 10/19/2016.
- */
-/**
- * Created by rosyp on 10/19/2016.
- */
-(function() {
+(function()
+{
     angular
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
-    // , UserService
-    function ProfileController($routeParams) {
+
+    function ProfileController($routeParams, $location, UserService)
+    {
         var vm = this;
-        var userId = parseInt($routeParams,uid);
-        console.log(userId);
-        var users =
-            [
-                {username: 'alice', password: 'ewq', _id: "123", first: 'Alice', last: 'Wonderland'},
-                {username: 'bob', password: 'ewq', _id: "234", first: 'Bob', last: 'Dylan'},
-                {username: 'charlie', password: 'ewq', _id: "345", first: 'Charlie', last: 'Brown'},
-                {username: 'jannunzi', password: 'jannunzi', _id: "456", first: 'Jose', last: 'Annunzi'}
-            ];
+        vm.userId = $routeParams["uid"];
+        vm.update = update;
+        vm.init = init;
+        
+        function init()
+        {
+            vm.user = UserService.findUserById(vm.userId);
+            $location.url("/user/" + user._id);
+        }
 
-        for (var u in users) {
-            user = users[u];
-            if (user._id === userId) {
-                console.log(["found the user", user])
-            }
+        init();
 
+        function update()
+        {
+            vm.user = UserService.updateUser(vm.userId, vm.user);
+            $location.url("/user/" + user._id);
         }
     }
 }) ();
+
+
 

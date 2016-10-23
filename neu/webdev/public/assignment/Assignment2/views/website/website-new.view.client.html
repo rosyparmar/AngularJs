@@ -1,265 +1,88 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="row container-fluid">
-        <div class="col-sm-4 hidden-xs">
-            <div class="navbar-text pull-left" style="margin-left: 0px">
-                <a href="#/profile">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5 col-lg-5 hidden-xs hidden-sm ">
+                <p class="navbar-text pull-left">
+                    <a href="#/user/{{model.userId}}/website">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </p>
+                <span class="navbar-brand pull-left">Websites</span>
+                <p class="navbar-text pull-right">
+                    <a href="website-new.html">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </p>
             </div>
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    Websites
-                </a>
+            <div class="col-xs-9 col-sm-10 col-md-6 col-lg-6">
+                <p class="navbar-text pull-left visible-xs visible-sm">
+                    <a href="#/user/{{model.userId}}/website">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </p>
+                <span class="navbar-brand pull-left">New Website</span>
             </div>
-            <div class="navbar-text pull-right" style="margin-right: 27px;">
-                <a href="#/website-edit">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-8">
-            <div class="navbar-text pull-left" style="margin-left: 0px">
-                <a href="#/website">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
-            <div class="navbar-text pull-right" style="margin-right: 0px;">
-                <a href="#/website">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    New Website
-                </a>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pull-right">
+                <p class="navbar-text pull-right">
+                    <a href="model.createWebsite(newWebsite)">
+                        <span class="glyphicon glyphicon-ok pull-right"></span>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
 </nav>
 
-<div class="row container-fluid">
-    <div class="col-sm-4 hidden-xs" style="margin-left:15px; margin-top: 50px; padding-top: 15px; margin-bottom: 50px; position: absolute;top: 0px;bottom: 0px;overflow: auto;">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a href="#">
-                    Cras justo odio
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Dapibus ac facilisis in
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Morbi leo risus
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Porta ac consectetur ac
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Vestibulum at eros
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Cras justo odio
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Cras justo odio
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-
-            <li class="list-group-item">
-                <a href="#">
-                    Porta ac consectetur ac
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Vestibulum at eros
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Cras justo odio
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Cras justo odio
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-
-            <li class="list-group-item">
-                <a href="#">
-                    Porta ac consectetur ac
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Vestibulum at eros
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Cras justo odio
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Cras justo odio
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-
-            <li class="list-group-item">
-                <a href="#">
-                    Porta ac consectetur ac
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Vestibulum at eros
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Cras justo odio
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    Cras justo odio
-                </a>
-                <a href="#" class="pull-right" style="margin-left: 15px;">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-
-        </ul>
+<div class="container-fluid">
+    <div class="container-fluid col-md-5 col-lg-5 hidden-xs hidden-sm v-divider" >
+        <div class="topMargin">
+            <div ng-repeat ="website in model.websites">
+                <ul class="list-group">
+                    <li class="btn btn-link btn-block btn-align-left btn-no-underline">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
+                            {{website.name}}
+                        </a>
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="col-sm-8 pull-right" style="padding-left: 30px;padding-right: 0px;">
+</div>
+    <div class="container-fluid col-xs-11 col-sm-12 col-md-7 col-lg-7">
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                <label for="websiteName">Name</label>
+                <input  ng-model = "newWebsite.name"
+                        type="text"
+                        class="form-control"
+                        id="websiteName"
+                        placeholder="Name"/>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="websiteDescription">Description</label>
+                <textarea ng-model="newWebsite.description"
+                          class="form-control"
+                          rows="6"
+                          id="websiteDescription"
+                          placeholder="Description"></textarea>
             </div>
-            <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile" class="form-control">
-            </div>
-            <div class="input-group">
-                      <span class="input-group-addon">
-                        <input type="checkbox" aria-label="...">
-                      </span>
-                <input value="Single" readonly type="text" class="form-control" aria-label="...">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </form>
     </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <div class="row navbar-text" style="width: 100%; text-align: center;">
-            <div class="col-xs-2">
-                <a href="#" class="pull-right">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
+        <div class="row">
+            <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11"></div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <p class="navbar-text pull-right">
+                    <a href="#/user/{{model.userId}}">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
