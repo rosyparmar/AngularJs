@@ -10,7 +10,7 @@
     function WidgetChoserController($location,$routeParams,WidgetService)
     {
         var vm=this;
-        vm.id=$routeParams["uid"];
+        vm.userId=$routeParams["uid"];
         vm.websiteId=$routeParams["wid"];
         vm.pageId=$routeParams["pid"];
         vm.createWidget=createWidget;

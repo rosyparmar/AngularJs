@@ -79,7 +79,7 @@
                 })
 			.otherwise
             ({
-				redirectTo : "views/user/login.view.client.html"
+				redirectTo : "/login"
 			});
 	}
 })();

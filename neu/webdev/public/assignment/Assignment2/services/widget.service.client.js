@@ -15,7 +15,7 @@
                 "url": "http://lorempixel.com/400/200/"
             },
             {
-                "_id": "234",
+                "_id": "236",
                 "widgetType": "HEADER",
                 "pageId": "234",
                 "text": '<p>Watchmaker <a href="http://gizmodo.com/tag/mbf" rel="nofollow">MB&amp;F</a> ' +
@@ -31,7 +31,7 @@
                 "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
                 "url": "https://youtu.be/AM2Ivdi9c4E"
             },
-            {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
+            {"_id": "234", "widgetType": "HTML", "pageId": "234", "text": "<p>Lorem ipsum</p>"}
         ];
 
         var api =
@@ -82,7 +82,7 @@
             var widget_arr = [];
             for(var w in widgets)
             {
-                if(widgets[w]._id === pageId)
+                if(widgets[w].pageId === pageId)
                 {
                     widget_arr.push(widgets[w]);
                 }
