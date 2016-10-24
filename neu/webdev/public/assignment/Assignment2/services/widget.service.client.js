@@ -8,15 +8,15 @@
     {
         var widgets = [
             {"_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
-            {"_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+            {"_id": "234", "widgetType": "HEADER", "pageId": "235", "size": 4, "text": "Lorem ipsum"},
             {
                 "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
                 "url": "http://lorempixel.com/400/200/"
             },
             {
-                "_id": "456",
-                "widgetType": "HTML",
-                "pageId": "321",
+                "_id": "234",
+                "widgetType": "HEADER",
+                "pageId": "234",
                 "text": '<p>Watchmaker <a href="http://gizmodo.com/tag/mbf" rel="nofollow">MB&amp;F</a> isn’t as well-known as  Rolex or Timex, but that’s because the company’s unique creations—like a <a href="http://gizmodo.com/listen-to-an-18-000-tie-fighter-music-box-play-the-sta-1717444112" rel="nofollow">TIE Fighter-shaped music box</a> that plays the <em>Star Wars</em> theme—are made for die-hard collectors. Its latest creation is a <a href="https://www.mbandf.com/en/machines/co-creations/astrograph" target="_blank" rel="noopener">rocket-shaped pen inspired by the moon landing</a>, and I’m desperately trying to justify…<span class="read-more-placeholder"></span><span class="readmore-core-decorated"></span></p>'
             },
             {"_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -61,7 +61,7 @@
             for (var w in widgets)
             {
                 widget = widgets[w];
-                if (widget._id === widgetId)
+                if (widget._id === wid)
                 {
                     return widget;
                 }
@@ -74,7 +74,7 @@
             var widget_arr = [];
             for(var w in widgets)
             {
-                if(widgets[w].pageId === pageId)
+                if(widgets[w]._id === pageId)
                 {
                     widget_arr.push(widgets[w]);
                 }
@@ -85,10 +85,13 @@
 
         function updateWidget(widgetId, newWidget)
         {
-            if (widget.widgetType == "HEADER") {
-                for (var w in widgets) {
+            if (widget.widgetType == "HEADER")
+            {
+                for (var w in widgets)
+                {
                     widIndex = widgets[w];
-                    if (newWidget._id === widgetId) {
+                    if (newWidget._id === widgetId)
+                    {
                         widgets[widIndex] = newWidget;
                         return widgets[userIndex];
                     }
@@ -99,10 +102,13 @@
                 return false;
             }
 
-            else if (widget.widgetType == "YOUTUBE") {
-                for (var w in widgets) {
+            else if (widget.widgetType == "YOUTUBE")
+            {
+                for (var w in widgets)
+                {
                     widIndex = widgets[w];
-                    if (newWidget._id === widgetId) {
+                    if (newWidget._id === widgetId)
+                    {
                         widgets[widIndex] = newWidget;
                         return widgets[userIndex];
                     }
@@ -113,14 +119,18 @@
                 return false;
             }
 
-            else if (widget.widgetType == "IMAGE") {
-                for (var w in widgets) {
+            else if (widget.widgetType == "IMAGE")
+            {
+                for (var w in widgets)
+                {
                     widIndex = widgets[w];
-                    if (newWidget._id === widgetId) {
+                    if (newWidget._id === widgetId)
+                    {
                         widgets[widIndex] = newWidget;
                         return widgets[userIndex];
                     }
-                    else {
+                    else
+                    {
                         return null;
                     }
                 }
