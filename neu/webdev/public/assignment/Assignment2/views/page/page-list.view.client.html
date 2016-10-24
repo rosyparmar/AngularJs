@@ -20,24 +20,20 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row paddingRightLeft">
-        <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div ng-repeat="page in model.pages">
-                <ul class="list-group">
-                    <li class="btn btn-link btn-block btn-align-left btn-no-underline">
-                        <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
-                            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget" class="pull-left">
-                                {{page.name}}
-                            </a>
-                        </div>
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                        </div>
-                    </li>
-                </ul>
+                <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget" class="pull-left">
+                        {{page.name}}
+                    </a>
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"  class="pull-right">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
