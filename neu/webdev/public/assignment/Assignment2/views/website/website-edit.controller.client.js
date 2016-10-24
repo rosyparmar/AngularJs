@@ -33,6 +33,7 @@
             WebsiteService.deleteWebsite(vm.websiteId);
             $location.url("/user/" + vm.userId + "/website");
         }
+        
     }
 })();
 

@@ -85,20 +85,49 @@
 
         function updateWidget(widgetId, newWidget)
         {
-            for (var w in widgets)
-            {
-                widIndex = widgets[w];
-                if (newWidget._id === widgetId)
-                {
-                    widgets[widIndex] = newWidget;
-                    return widgets[userIndex];
+            if (widget.widgetType == "HEADER") {
+                for (var w in widgets) {
+                    widIndex = widgets[w];
+                    if (newWidget._id === widgetId) {
+                        widgets[widIndex] = newWidget;
+                        return widgets[userIndex];
+                    }
+                    else {
+                        return null;
+                    }
                 }
-                else {
-                    return null;
-                }
+                return false;
             }
-            return false;
+
+            else if (widget.widgetType == "YOUTUBE") {
+                for (var w in widgets) {
+                    widIndex = widgets[w];
+                    if (newWidget._id === widgetId) {
+                        widgets[widIndex] = newWidget;
+                        return widgets[userIndex];
+                    }
+                    else {
+                        return null;
+                    }
+                }
+                return false;
+            }
+
+            else if (widget.widgetType == "IMAGE") {
+                for (var w in widgets) {
+                    widIndex = widgets[w];
+                    if (newWidget._id === widgetId) {
+                        widgets[widIndex] = newWidget;
+                        return widgets[userIndex];
+                    }
+                    else {
+                        return null;
+                    }
+                }
+                return false;
+            }
         }
+
 
         function deleteWidget(widgetId)
         {

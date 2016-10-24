@@ -1,27 +1,43 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-5 col-lg-5 hidden-xs hidden-sm ">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <p class="navbar-text pull-left">
                     <a href="#/user/{{model.userId}}/website">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                 </p>
-                <span class="navbar-brand pull-left">Websites</span>
-                <p class="navbar-text pull-right">
-                    <a href="website-new.html">
+            </div>
+
+            <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+                <a class="navbar-brand" href="#">
+                    <span class=" navbar-fnt pull-left ">Websites</span>
+                </a>
+            </div>
+
+            <div class=" hidden-xs hidden-sm col-md-1 col-lg-1 pull-left">
+                <p class="navbar-text ">
+                    <a href="#/user/{{model.userId}}/website/new">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
                 </p>
             </div>
+
             <div class="col-xs-9 col-sm-10 col-md-6 col-lg-6">
                 <p class="navbar-text pull-left visible-xs visible-sm">
                     <a href="#/user/{{model.userId}}/website">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                 </p>
-                <span class="navbar-brand pull-left">New Website</span>
             </div>
+
+            <div class="col-xs-9 col-sm-9 col-md-6 col-lg-6">
+                <a class="navbar-brand" href="#">
+                    <span class=" navbar-fnt ">New Website</span>
+                </a>
+            </div>
+
+
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pull-right">
                 <p class="navbar-text pull-right">
                     <a href="model.createWebsite(newWebsite)">
@@ -29,12 +45,13 @@
                     </a>
                 </p>
             </div>
+
         </div>
     </div>
 </nav>
 
 <div class="container-fluid">
-    <div class="container-fluid col-md-5 col-lg-5 hidden-xs hidden-sm v-divider" >
+    <div class="container-fluid col-md-5 col-lg-5 hidden-xs hidden-sm v-divider">
         <div class="topMargin">
             <div ng-repeat ="website in model.websites">
                 <ul class="list-group">
@@ -55,7 +72,7 @@
         <form>
             <div class="form-group">
                 <label for="websiteName">Name</label>
-                <input  ng-model = "newWebsite.name"
+                <input  ng-model="model.currentWebsite.name"
                         type="text"
                         class="form-control"
                         id="websiteName"
@@ -63,7 +80,7 @@
             </div>
             <div class="form-group">
                 <label for="websiteDescription">Description</label>
-                <textarea ng-model="newWebsite.description"
+                <textarea ng-model="model.currentWebsite.description"
                           class="form-control"
                           rows="6"
                           id="websiteDescription"
