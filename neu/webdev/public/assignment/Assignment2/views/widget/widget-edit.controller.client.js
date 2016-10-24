@@ -7,31 +7,41 @@
         .module("WebAppMaker")
         .controller("WidgetEditController",WidgetEditController)
 
-    function WidgetEditController($location,$routeParams,WidgetService) {
+    function WidgetEditController($location,$routeParams,WidgetService)
+    {
         var vm=this;
         vm.id=$routeParams["uid"];
         vm.websiteId=$routeParams["wid"];
         vm.pageId=$routeParams["pid"];
-        vm.widgetId=$routeParams["wgid"]
+        vm.widgetId=$routeParams["wgid"];
+        vm.widget=WidgetService.findWidgetById(vm.widgetId);
+
         vm.updateWidget=updateWidget;
         vm.deleteWidget=deleteWidget;
 
-        function init()
-        {
-            vm.widget=WidgetService.findWidgetById(vm.widgetId);
-        }
-        init();
-
         function deleteWidget()
         {
-            WidgetService.deleteWidget(vm.widgetId);
-            $location.url("/user/" + vm.id + "/website/" + vm.websiteId + "/page");
+            var res = WidgetService.deleteWidget(vm.widgetId);
+            if(res)
+            {
+                $location.url("/user/" + vm.id + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+            }
+            else
+            {
+                vm.error ="Wrong";
+            }
         }
 
         function updateWidget(widget)
         {
-            WidgetService.updateWidget(vm.widgetId, widget);
-            $location.url("/user/"+vm.id+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+            var res = WidgetService.updateWidget(vm.widgetId, widget);
+            if(res) {
+                $location.url("/user/" + vm.id + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+            }
+            else
+            {
+                vm.error = "Wrong";
+            }
         }
 
     }

@@ -11,8 +11,9 @@
         vm.websiteId=$routeParams["wid"];
         vm.pageId=$routeParams["pid"];
         vm.widgetId = $routeParams["wgid"];
-        vm.editWidgets = editWidgets;
+        vm.editWidget = editWidget;
         vm.getSafeHtml = getSafeHtml;
+        vm.checkSafeURL = checkSafeURL;
 
         function getSafeHtml(text) {
             return $sce.trustAsHtml(text);
@@ -28,11 +29,12 @@
 
         function editWidget(w){
 
-            if (w.widgetType === "YOUTUBE" || w.widgetType === "IMAGE" || w.widgetType === "HEADER"){
-                $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + w._id);
+            if (w.widgetType === "YOUTUBE" || w.widgetType === "IMAGE" || w.widgetType === "HEADER")
+            {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + w._id);
             }
             else{
-                $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
             }
 
         }

@@ -11,7 +11,7 @@
             {username: 'alice', password: 'ewq', _id: "123", first: 'Alice', last: 'Wonderland'},
             {username: 'bob', password: 'ewq', _id: "234", first: 'Bob', last: 'Dylan'},
             {username: 'charlie', password: 'ewq', _id: "345", first: 'Charlie', last: 'Brown'},
-            {username: 'jannunzi', password: 'jannunzi', _id: "456", first: 'Jose', last: 'Annunzi'}
+            {username: 'rosy', password: 'rosy', _id: "456", first: 'Jose', last: 'Annunzi'}
          ];
 
         var api =
