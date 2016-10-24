@@ -14,6 +14,7 @@
         vm.websiteId=$routeParams["wid"];
         vm.pageId=$routeParams["pid"];
         vm.widgetId=$routeParams["wgid"];
+        
         vm.widget=WidgetService.findWidgetById(vm.widgetId);
 
         vm.updateWidget=updateWidget;
@@ -34,7 +35,9 @@
 
         function updateWidget(widget)
         {
+           console.log(vm.widget);
             var res = WidgetService.updateWidget(vm.widgetId, widget);
+            console.log("res" +res);
             if(res) {
                 $location.url("/user/" + vm.id + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
             }

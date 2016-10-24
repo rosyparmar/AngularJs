@@ -83,13 +83,10 @@
                 for (var w in widgets)
                 {
                     widIndex = widgets[w];
-                    if (newWidget._id === widgetId)
+                    if ( widgets[w]._id === widgetId)
                     {
-                        widgets[widIndex] = newWidget;
-                        return widgets[widIndex];
-                    }
-                    else {
-                        return null;
+                        widgets[w] = newWidget;
+                        return widgets[w];
                     }
                 }
                 return false;
@@ -97,16 +94,12 @@
 
             else if (widget.widgetType == "YOUTUBE")
             {
-                for (var w in widgets)
-                {
+
+                for (var w in widgets) {
                     widIndex = widgets[w];
-                    if (newWidget._id === widgetId)
-                    {
-                        widgets[widIndex] = newWidget;
-                        return widgets[widIndex];
-                    }
-                    else {
-                        return null;
+                    if (widgets[w]._id === widgetId) {
+                        widgets[w] = newWidget;
+                        return widgets[w];
                     }
                 }
                 return false;
@@ -117,15 +110,12 @@
                 for (var w in widgets)
                 {
                     widIndex = widgets[w];
-                    if (newWidget._id === widgetId)
+                    if (widgets[w]._id === widgetId)
                     {
-                        widgets[widIndex] = newWidget;
-                        return widgets[widIndex];
+                        widgets[w] = newWidget;
+                        return widgets[w];
                     }
-                    else
-                    {
-                        return null;
-                    }
+                    
                 }
                 return false;
             }

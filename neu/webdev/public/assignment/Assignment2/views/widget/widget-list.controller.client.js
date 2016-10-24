@@ -41,7 +41,9 @@
 
         function init()
         {
+            console.log("init lis"+vm.pageId);
             vm.widgets=WidgetService.findWidgetsByPageId(vm.pageId);
+            console.log("list resp"+vm.widgets);
 
         }
         init();
