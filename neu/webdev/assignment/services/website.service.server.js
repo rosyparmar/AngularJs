@@ -1,13 +1,4 @@
-module.exports = function (app){
-    var websites =
-        [
-            {_id: "123", name: "Facebook", developerId: "123", description: "Lorem"},
-            {_id: "234", name: "Twitter", developerId: "234", description: "Lorem"},
-            {_id: "456", name: "Gizmodo", developerId: "456", description: "Lorem"},
-            {_id: "567", name: "Tic Tac Toe", developerId: "456", description: "Lorem"},
-            {_id: "678", name: "Checkers", developerId: "456", description: "Lorem"},
-            {_id: "789", name: "Chess", developerId: "456", description: "Lorem"}
-        ];
+module.exports = function (app, model){
 
     app.post('/api/user/:uid/website',createWebsite);
     app.get('/api/user/:uid/website', findAllWebsitesForUser);
@@ -15,57 +6,92 @@ module.exports = function (app){
     app.put('/api/website/:websiteId', updateWebsite);
     app.delete('/api/website/:websiteId', deleteWebsite);
 
+    model.websiteModel.setModel(model);
+
     function createWebsite(req, res) {
-        var website = req.body;
-        websites.push(website);
-        res.send(websites);
+        var userId = req.params.uid;
+        var newWebsite = req.body;
+        model
+            .websiteModel
+            .createWebsiteForUser(userId, newWebsite)
+            .then(
+                function (newWebsite) {
+                    res.send(newWebsite);
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
+                });
     }
+
+
 
     function findAllWebsitesForUser(req, res) {
-        var uid = req.params.uid;
-
-        var result = [];
-        for(var w in websites) {
-            website = websites[w];
-            console.log(website.developerId);
-            if(website.developerId == uid) {
-                result.push(website);
-            }
-        }
-        res.send(result);
+        var userId = req.params.uid;
+        console.log(userId);
+        model
+            .websiteModel
+            .findAllWebsitesForUser(userId)
+            .then(
+                function (user) {
+                    console.log(user);
+                    res.json(user.websites);
+                    console.log("whats happening");
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
+                }
+            );
     }
+
+
 
     function findWebsiteById(req, res) {
         var websiteId = req.params.websiteId;
-        for(var w in websites) {
-            website = websites[w];
-            if(website._id == websiteId){
-                res.send(websites[w]);
-            }
-        }
-        res.send('0');
+        model
+            .websiteModel
+            .findWebsiteById(websiteId)
+            .then(
+                function (website) {
+                    res.json(website);
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
+                });
     }
 
+
+
     function updateWebsite(req, res) {
-        var website = req.body;
         var websiteId = req.params.websiteId;
-        for(var w in websites) {
-            if(websites[w]._id == websiteId) {
-                websites[w] = website;
-                res.send(200);
-            }
-        }
-        res.send(400);
+        var website = req.body;
+        model
+            .websiteModel
+            .updateWebsite(websiteId, website)
+            .then(
+                function (status) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
+
+
+
     function deleteWebsite(req, res) {
-        var website = req.body;
         var websiteId = req.params.websiteId;
-        for(var i = 0;i < websites.length; i++){
-            if(websites[i]._id == websiteId){
-                websites.splice(i,1);
-                res.send(200);
-            }
-        }
-        res.send(400);
+        model
+            .websiteModel
+            .deleteWebsite(websiteId)
+            .then(
+                function (status) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
+
     }
 };

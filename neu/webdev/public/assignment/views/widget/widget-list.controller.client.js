@@ -27,21 +27,14 @@
         }
 
         function editWidget(widget){
-            if (widget.widgetType === "YOUTUBE" || widget.widgetType === "IMAGE" || widget.widgetType === "HEADER") {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+"/widget/"+ widget._id);
-                console.log("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+"/widget/"+ widget._id);
-            }
-            else{
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-            }
-
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+"/widget/"+ widget._id);
         }
 
         function init() {
             WidgetService.findWidgetsByPageId(vm.pageId)
                 .success(function (widgets) {
-                    console.log(widgets);
                     vm.widgets = widgets;
+                    console.log(vm.widgets);
                 })
                 .error(function (err) {
                     vm.error = "OOps..Not able to locate!!!";

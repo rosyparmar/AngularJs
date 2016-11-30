@@ -15,7 +15,6 @@
             vm.widgetId = $routeParams["wgid"];
             WidgetService.findWidgetById(vm.widgetId)
                 .success(function (presentWid) {
-                    console.log(presentWid);
                     vm.widget = presentWid;
             })
                 .error(function (err) {
@@ -24,22 +23,63 @@
         }
         init();
 
-        function updateWidget(widget) {
-            WidgetService.updateWidget(vm.widgetId, widget)
-                .success(function (s) {
-                    $location.url("/user/" + vm.id + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-                })
-                .error(function (err) {
-                    vm.error = "Failed to update widget";
-                });
+        function validateWidgetType(widgetToTest){
+            var validationFailed = false;
+
+            switch(widgetToTest.type){
+                case "HEADING":
+                    if(widgetToTest.text == '' || widgetToTest.text == null){
+                        validationFailed = true;
+                    }
+                    break;
+                case "IMAGE":
+                    if(widgetToTest.url == '' || widgetToTest.url == null){
+                        validationFailed = true;
+                    }
+                    break;
+                case "YOUTUBE":
+                    if(widgetToTest.url == '' || widgetToTest.url == null){
+                        validationFailed = true;
+                    }
+                    break;
+            }
+
+            return validationFailed;
         }
 
-        function deleteWidget() {
+        function updateWidget(){
+            if(validateWidgetType(vm.widget)){
+                switch(vm.widget.type) {
+                    case "HEADING":
+                        vm.error = "Header Text cannot be blank";
+                        break;
+                    case "IMAGE":
+                        vm.error = "Image Url cannot be blank";
+                        break;
+                    case "YOUTUBE":
+                        vm.error = "Video Url cannot be blank";
+                        break;
+                    default:
+                        vm.error = "There is something wrong. Please check whether form fields are correctly filled."
+                        break;
+                }
+            }
+            else {
+                WidgetService.updateWidget(vm.widgetId, vm.widget)
+                    .then(function (response) {
+                        $location.url("/user/" + vm.id + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    }, function (err) {
+                        vm.error = "Failed to update widget";
+                    });
+            }
+        }
+
+        function deleteWidget(){
             WidgetService.deleteWidget(vm.widgetId)
-                .success(function (res) {
-                    $location.url("/user/"+vm.id+"/website/"+vm.websiteId+ "/page/" + vm.pageId + "/widget/");
+                .success(function(res){
+                    $location.url("/user/" + vm.id + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
                 })
-                .error(function (err) {
+                .error(function(err){
                     vm.error = "Failed to delete widget";
                 });
         }

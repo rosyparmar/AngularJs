@@ -25,13 +25,18 @@
             init();
 
             function updatePage() {
-                PageService.updatePage(vm.pageId, vm.currentpage)
+                if (vm.currentpage.name != ''){
+                    PageService.updatePage(vm.pageId, vm.currentpage)
                 .success(function (s) {
                     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
                 })
                 .error(function (error) {
                     vm.error = "No update possible";
                 })
+            }
+                else {
+                vm.error = "Page name cannot be left blank";
+                }
             }
 
             function deletePage() {

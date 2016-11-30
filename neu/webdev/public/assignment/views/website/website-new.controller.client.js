@@ -9,27 +9,33 @@
         vm.createNewWebsite = createNewWebsite;
 
         function init() {
+            vm.website = {"name":"","description":""};
             var promise = WebsiteService.findAllWebsitesForUser(vm.userId);
             promise
-                .success(function (listwebsites) {
-                    vm.websites = listwebsites;
+                .success(function (websites) {
+                    vm.websites = websites;
                 })
                 .error(function (error) {
                     vm.error = "Error in getting websites";
-                    console.log(error);
                 })
         }
         init();
 
         function createNewWebsite(newwebsite) {
-             var promise = WebsiteService.createWebsite(vm.userId, newwebsite);
-                 promise
-                     .success(function (newwebsite){
-                         $location.url("/user/" + vm.userId + "/website");
-                     })
-                     .error(function (err) {
-                         vm.error = "Sorry, can't create this website";
-                     })
+            if (newwebsite.name == "") {
+                vm.error = "Website name not provided";
+            }
+            else {
+                var promise = WebsiteService.createWebsite(vm.userId, newwebsite);
+                promise
+                    .success(function (newwebsite) {
+                            $location.url("/user/" + vm.userId + "/website");
+                        }
+                    )
+                    .error(function (err) {
+                        console.log(err);
+                    })
+            }
         }
     }
 })();

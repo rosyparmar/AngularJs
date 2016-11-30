@@ -15,15 +15,10 @@
         };
         return api;
 
+
         function createWebsite(userId, website) {
-            var newId = (new Date().getTime()).toString();
             var url = "/api/user/"+userId+"/website";
-            var newWebsite = {
-                _id: newId,
-                name: website.name,
-                developerId: userId,
-                description: website.description};
-            return $http.post(url, newWebsite);
+            return $http.post(url, website);
         }
 
         function updateWebsite(websiteId, website) {

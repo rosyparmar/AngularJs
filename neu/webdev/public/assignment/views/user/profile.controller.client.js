@@ -26,18 +26,23 @@
         init();
 
         function update(id) {
+            if(vm.user.username != "") {
             UserService.updateUser(userId, vm.user)
-                .success(function (response) {
+                .then(function (response) {
+                    vm.error = "";
                     vm.success = "Successfully updated user";
-                })
-                    .error(function (error) {
+                }, function (error) {
+                        vm.success = "";
                     vm.error = "Failed to update user";
                 });
         }
+            else {
+                vm.error = "Username cannot be empty";
+            }
+        }   
 
         function unregisterUser() {
-            UserService
-                .unregisterUser(vm.user._id)
+            UserService.deleteUser(vm.user._id)
                 .success(function(){
                     $location.url("/login");
                 })

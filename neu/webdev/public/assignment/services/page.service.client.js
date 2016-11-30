@@ -16,14 +16,8 @@
         return api;
 
         function createPage(websiteId, page) {
-            var newId = (new Date().getTime()).toString();
             var url = "/api/website/"+websiteId+"/page";
-            var newPage = {
-                _id: newId,
-                name: page.name,
-                websiteId: websiteId,
-                description: page.description};
-            return $http.post(url, newPage);
+            return $http.post(url, page);
         }
 
         function findPageById(pageId) {

@@ -19,8 +19,8 @@
             }
             
           })
-          .error(function (bbb) {
-            console.log(bbb);
+          .error(function (err) {
+              vm.error = err;
             
           });
     }

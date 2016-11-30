@@ -1,4 +1,4 @@
-(function() {
+(function () {
     angular
         .module("WebAppMaker")
         .controller("RegisterController", RegisterController);
@@ -7,31 +7,26 @@
         var vm = this;
         vm.register = register;
 
-        function register(addUser,verifyPassword) {
+        function register(user) {
 
-            if(addUser.password === verifyPassword){
-            var checkExistingUser = UserService.findUserByUsername(addUser.username);
-            checkExistingUser
-                .success(function (user) {
-                    if(user === '0'){
-                        console.log("User Not Found");
-                        var promise = UserService.createUser(addUser.username, addUser.password);
-                        promise
-                            .success(function (newUser) {
-                                $location.url("/user/" + newUser._id);
-                            })
-                            .error (function (err) {
-                                vm.error = "Failed to create users"
-                            })
-                    }
-                    else{
+            if (user.password == user.verifypassword) {
+                var checkExistingUser = UserService.findUserByUsername(user.username);
+
+                checkExistingUser
+                    .success(function (user) {
                         vm.error = "Username exists already";
-                    }
-                })
-                .error(function (err) {
-                    vm.error = err;
-                })
-        }
+                    })
+                    .error(function (err) {
+                        var promise = UserService.createUser(user);
+                        promise
+                            .success(function (user) {
+                                $location.url("/user/" + user._id);
+                            })
+                            .error(function (err) {
+                                vm.error = "Failed to create users";
+                            });
+                    });
+            }
             else {
                 vm.error = "Password's don't match";
             }

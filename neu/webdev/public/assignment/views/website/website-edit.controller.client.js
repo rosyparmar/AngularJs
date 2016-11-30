@@ -33,6 +33,7 @@
         init();
 
         function updateWebsite() {
+            if (vm.currentwebsite.name != ''){
             WebsiteService.updateWebsite(vm.websiteId, vm.currentwebsite)
                 .success(function (s) {
                     $location.url("/user/" + vm.userId + "/website");
@@ -40,6 +41,10 @@
                 .error(function (error) {
                     vm.error = "No update possible";
                 })
+        }
+            else {
+                vm.error = "Website name cannot be left empty";
+            }
         }
 
         function deleteWebsite() {

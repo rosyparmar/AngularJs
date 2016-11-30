@@ -21,14 +21,14 @@
             return $http.delete(url);
         }
 
-        function createUser(username, password) {
-            var newId = (new Date().getTime()).toString();
-            var user = {
-                _id: newId,
-                username: username,
-                password: password
+        function createUser(user) {
+            var newUser = { 
+                username: user.username,
+                password: user.password,
+                firstname: " ",
+                lastname: " "
             };
-            return $http.post("/api/user", user);
+            return $http.post("/api/user", newUser);
         }
 
         function findUserById(userId) {
@@ -52,30 +52,8 @@
         }
 
         function deleteUser(userId) {
-            var userIndex = findUserIndexById(userId);
-            if(-1 === userIndex) {
-                return false;
-            }
-            else {
-                users.splice(userIndex, 1);
-                return true;
-            }
-        }
-
-        function findUserIndexById(userId) {
-            for(var i = 0; i < users.length; ++i) {
-                if( users[i]._id === userId)
-                    return i;
-            }
-
-            return -1;
-
-        }
-
-        function getRandomId(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min)) + min;
+            var url = "/api/user/" + userId;
+            return $http.delete(url);
         }
 
     }

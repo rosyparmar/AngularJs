@@ -1,23 +1,26 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="#/user/{{model.id}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-text pull-left">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-
-                <a class="navbar-brand" href="#">
-                    Widget Edit
-                </a>
-
-                <a ng-click="model.updateWidget(model.widget)"
-                   class="navbar-text pull-right">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                <p class="navbar-text pull-left">
+                    <a href="#/user/{{model.id}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </p>
+                <span class="navbar-brand pull-left">Widget Edit</span>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <p class="navbar-text pull-right">
+                    <a href ng-click="model.updateWidget()">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
 </nav>
     <form>
-        <div class="form-group">
+        <div class="form-group" class="youtube-widget" class="youtube-widget" class="youtube-widget iframe">
             <label for="widget-name">Name</label>
             <input  ng-model="model.widget.name"
                     type="text"
@@ -38,7 +41,7 @@
         <div class="form-group">
             <label for="width">Width</label>
             <input  ng-model="model.widget.width"
-                    type="text" class="form-control" id="width" placeholder="Width" value="100%">
+                    type="text" class="form-control" id="width" placeholder="Width">
         </div>
     </form>
     <a class="btn btn-danger btn-block"
