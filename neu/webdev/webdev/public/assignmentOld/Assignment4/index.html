@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "WebAppMaker">
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+
+    <script src ="directives/jga-directives.js"> </script>
+    <script src ="app.js"> </script>
+    <script src ="config.js"> </script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable = no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+
+    <script src ="views/user/login.controller.client.js"> </script>
+    <script src ="views/user/profile.controller.client.js"> </script>
+    <script src ="views/user/register.controller.client.js"> </script>
+    <script src ="views/website/website-list.controller.client.js"></script>
+    <script src ="views/website/website-new.controller.client.js"></script>
+    <script src ="views/website/website-edit.controller.client.js"></script>
+    <script src="views/widget/widget-list.controller.client.js"></script>
+    <script src="views/widget/widget-edit.controller.client.js"></script>
+    <script src="views/widget/widget-choser.controller.client.js"></script>
+    <script src ="views/page/page-list.controller.client.js"></script>
+    <script src ="views/page/page-new.controller.client.js"></script>
+    <script src ="views/page/page-edit.controller.client.js"></script>
+    <script src ="views/widget/widget-choser.controller.client.js"></script>
+
+    <script src ="services/user.service.client.js"></script>
+    <script src ="services/website.service.client.js"></script>
+    <script src ="services/page.service.client.js"></script>
+    <script src ="services/widget.service.client.js"></script>
+
+    <title>Assignment Home Page</title>
+</head>
+<body>
+
+<div ng-view>
+</div>
+
+</body>
+</html>

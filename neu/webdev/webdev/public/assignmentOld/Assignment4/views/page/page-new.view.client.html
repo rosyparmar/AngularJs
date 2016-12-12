@@ -1,0 +1,50 @@
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"
+                        class="navbar-text pull-left">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+                </a>
+                <a class="navbar-brand" href="#">New Page</a>
+                <a  ng-click="model.createPageNew(newPage)"
+                    class="navbar-text pull-right">
+                    <span class ="glyphicon glyphicon-ok">
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <form>
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input  ng-model = "newPage.name"
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    placeholder="Page name">
+        </div>
+        <div class="form-group">
+            <label for="username1">Title</label>
+            <input  ng-model = "newPage.title"
+                    type="text"
+                    class="form-control"
+                    id="username1"
+                    rows="6"
+                    placeholder = "Page title">
+        </div>
+
+    </form>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="#/user/{{model.userId}}" class="navbar-text pull-right">
+                <span class ="glyphicon glyphicon-user"> </span>
+            </a>
+        </div>
+    </div>
+</nav>

@@ -12,13 +12,22 @@
             findUserByUsername:findUserByUsername,
             updateUser:updateUser,
             deleteUser:deleteUser,
-            unregisterUser: unregisterUser
+            unregisterUser: unregisterUser,
+            login: login
         };
         return api;
 
         function unregisterUser(uid) {
             var url = "/api/user/" + uid;
             return $http.delete(url);
+        }
+
+        function login(username, password) {
+            var user = {
+                username : username,
+                password : password
+            };
+            return $http.post("/api/login", user);
         }
 
         function createUser(user) {

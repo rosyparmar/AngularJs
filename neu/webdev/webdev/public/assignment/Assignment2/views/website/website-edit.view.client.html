@@ -1,0 +1,102 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 hidden-xs hidden-sm ">
+                <p class="navbar-text pull-left">
+                    <a href="#/user/{{model.userId}}/website">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </p>
+                <span class="navbar-brand pull-left">Websites</span>
+                </div>
+
+            <div class="col-md-1 col-lg-1 hidden-xs hidden-sm pull-left">
+                <p class="navbar-text ">
+                    <a href="#/user/{{model.userId}}/website/new">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-xs-9 col-sm-10 col-md-6 col-lg-6">
+                <p class="navbar-text pull-left visible-xs visible-sm">
+                    <a href="#/user/{{model.userId}}/website">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </p>
+                <span class="navbar-brand pull-left">Edit Website</span>
+            </div>
+
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pull-right">
+                <p class="navbar-text pull-right">
+                    <a ng-click ="model.updateWebsite(model.currentWebsite)">
+                        <span class="glyphicon glyphicon-ok pull-right"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<!--<div class="row container-fluid">-->
+    <!--<div class="col-sm-4 hidden-xs left-scroll-parent">-->
+    <div class="col-sm-4 hidden-xs left-scroll-parent">
+<!--<div class= "col-md-1 col-lg-1 hidden-xs hidden-sm">-->
+        <div class="left-scroll">
+            <div ng-repeat ="website in model.websites">
+                <ul class="list-group">
+                    <li class="btn btn-link btn-block btn-align-left btn-no-underline">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}/page" class="pull-left">
+                            {{website.name}}
+                        </a>
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</div>
+<!--</div>-->
+
+    <div class="container-fluid col-xs-11 col-sm-12 col-md-7 col-lg-7 pull-right">
+        <form>
+            <div class="form-group">
+                <label for="websiteName">Website Name</label>
+                <input  ng-model="model.currentWebsite.name"
+                        type="text"
+                        class="form-control"
+                        id="websiteName"
+                        placeholder="Name"/>
+            </div>
+            <div class="form-group">
+                <label for="websiteDescription">Website Description</label>
+                <textarea ng-model="model.currentWebsite.description"
+                          class="form-control"
+                          rows="6"
+                          id="websiteDescription"
+                          placeholder="Description">
+                </textarea>
+            </div>
+            <a class="btn btn-danger btn-block"
+               ng-click="model.deleteWebsite()">
+                Delete
+            </a>
+        </form>
+    </div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11"></div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <p class="navbar-text pull-right">
+                    <a href="#/user/{{model.userId}}">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>

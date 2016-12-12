@@ -1,0 +1,73 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class ="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <a href="#/user/{{model.id}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                   class="navbar-text navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+                </a>
+                </div>
+                <div class ="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <a class="navbar-brand">
+                    <span>Widget edit</span>
+                </a>
+                    </div>
+
+                <div class ="col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
+                <a ng-click="model.updateWidget(model.widget)" class="navbar-text">
+                    <span class ="glyphicon glyphicon-ok pull-right"></span>
+                </a>
+                    </div>
+                <div class ="col-xs-1 col-sm-1 col-md-1 col-lg-1 "></div>
+            </div>
+        </div>
+</nav>
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="widget-name">Name</label>
+            <input ng-model="model.widget.name"
+                   type="text"
+                   class="form-control"
+                   id="widget-name"
+                   placeholder="Name">
+        </div>
+
+        <div class="form-group">
+            <label for="text">Text</label>
+            <input ng-model="model.widget.text"
+                   type="text"
+                   class="form-control"
+                   id="text"
+                   value= "US Senate Reaches Compromise">
+        </div>
+
+        <div class="form-group">
+            <label for="size">Size</label>
+            <input  ng-model="model.widget.size"
+                    type="text"
+                    class="form-control"
+                    id="size"
+                    value= "3">
+        </div>
+    </form>
+    <a ng-click="model.deleteWidget()"
+       class="btn btn-danger btn-block">
+        Delete
+    </a>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right"> </p>
+            <a href="#/user/{{model.id}}" class="navbar-text pull-right">
+                <span class ="glyphicon glyphicon-user"> </span>
+            </a>
+            </p>
+        </div>
+    </div>
+</nav>

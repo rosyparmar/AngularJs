@@ -1,5 +1,6 @@
 module.exports = function (app, model) {
 
+    app.post('/api/login', login);
     app.post('/api/user', createUser);
     app.get('/api/user', findUser);
     app.get('/api/user/:uid', findUserById);
@@ -7,6 +8,28 @@ module.exports = function (app, model) {
     app.delete('/api/user/:uid', unregisterUser);
 
     model.userModel.setModel(model);
+
+    function login(req, res){
+        var user = req.body;
+        var username = user.username;
+        var password = user.password;
+        model
+            .userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function (users) {
+                    if (users.length > 0) {
+                        res.json(users[0]);
+                    } else {
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(status).send(error);
+                }
+            );
+
+    }
     function unregisterUser(req, res) {
         var uid = req.params.uid;
         model
@@ -51,7 +74,7 @@ module.exports = function (app, model) {
                     res.sendStatus(400).send(error);
                 }
             );
-    }                                                   
+    }
 
 
     function findUser(req, res) {
