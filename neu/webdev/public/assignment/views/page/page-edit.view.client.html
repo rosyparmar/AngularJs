@@ -7,7 +7,7 @@
                     <span class="glyphicon glyphicon-chevron-left"> </span>
                 </a>
                 <a class="navbar-brand" href="#">Edit Page</a>
-                <a ng-click="model.updatePage()"
+                <a href="javascript:$('#pageEdit').click()">
                    class="navbar-text pull-right">
                     <span class ="glyphicon glyphicon-ok"> </span>
                 </a>
@@ -16,34 +16,33 @@
     </nav>
 
 
+    <div ng-show="!model.error && pageForm.$submitted && pageForm.$invalid" class="alert alert-danger"
+         role="alert">
+        There are errors in the page form
+    </div>
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
     </div>
 
-    <form>
+    <form name="pageForm" id="pageForm" novalidate
+          ng-submit="pageForm.$valid && model.updatePage()">
         <div class="form-group">
-            <label for="page-name">Name</label>
-            <input  ng-model="model.currentpage.name"
-                    type="text"
-                    class="form-control"
-                    id="page-name"
-                    placeholder="Name">
+            <label for="pageName">Name</label>
+            <input type="text" required class="form-control" ng-model="model.currentpage.name" id="pageName" name="pageName" placeholder="Page Name"/>
+            <div ng-show="pageForm.$submitted && pageForm.pageName.$invalid" class="formFieldErrorMsg">
+                Page Name is a required field
+            </div>
         </div>
-
         <div class="form-group">
-            <label for="title">Title</label>
-            <input  ng-model="model.currentpage.title"
-                    type="text"
-                    class="form-control"
-                    id="title"
-                    placeholder = "Page title">
+            <label for="pageTitle">Title</label>
+            <input type="text" class="form-control" ng-model="model.currentpage.title" id="pageTitle" placeholder="Page Title"/>
         </div>
-
+        <div class="form-group">
+            <button ng-click="model.deletePage()" class="btn btn-block btn-danger">Delete</button>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="pageEdit" style="display: none">Edit Page</button>
     </form>
 
-    <a class = "btn btn-danger btn-block"
-       ng-click="model.deletePage()" > Delete
-    </a>
 
 </div>
 

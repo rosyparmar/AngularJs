@@ -13,7 +13,10 @@
             updateUser:updateUser,
             deleteUser:deleteUser,
             unregisterUser: unregisterUser,
-            login: login
+            login:login,
+            logout:logout,
+            register: register,
+            checkLogin:checkLogin
         };
         return api;
 
@@ -22,12 +25,22 @@
             return $http.delete(url);
         }
 
-        function login(username, password) {
-            var user = {
-                username : username,
-                password : password
+        function login(user,password) {
+            var nuser = {
+                username: user,
+                password: password
             };
-            return $http.post("/api/login", user);
+            console.log(nuser);
+            console.log("in user client service");
+            return $http.post("/api/login", nuser);
+        }
+
+        function logout(){
+            return $http.post("/api/logout");
+        }
+
+        function checkLogin(){
+            return $http.post("/api/checkLogin");
         }
 
         function createUser(user) {
@@ -52,6 +65,8 @@
 
         function findUserByUsername(username) {
             var url = '/api/user?username='+username;
+            console.log(username);
+            console.log("in service client");
             return $http.get(url);
         }
 
@@ -63,6 +78,17 @@
         function deleteUser(userId) {
             var url = "/api/user/" + userId;
             return $http.delete(url);
+        }
+
+        function register(user){
+            var newUser = {
+                username: user.username,
+                password: user.password,
+                first: "",
+                last: ""
+            };
+            console.log("Register: "+newUser);
+            return $http.post("/api/register", newUser);
         }
 
     }

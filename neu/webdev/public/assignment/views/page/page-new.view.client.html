@@ -18,9 +18,13 @@
     </nav>
 
     <div class="container-fluid">
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
-    </div>
+        <div ng-show="!model.error && pageForm.$submitted && pageForm.$invalid" class="alert alert-danger"
+             role="alert">
+            There are errors in the page form
+        </div>
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
 
     <form>
         <div class="form-group">

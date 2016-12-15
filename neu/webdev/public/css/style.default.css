@@ -219,6 +219,7 @@ INTRO
   margin-bottom: 20px;
   font-weight: 900;
   opacity: 0;
+  font-style: italic;
   filter: alpha(opacity=0);
   -webkit-backface-visibility: hidden;
 }
