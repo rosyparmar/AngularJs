@@ -11,14 +11,21 @@ module.exports = function () {
         findUserByUsername : findUserByUsername,
         findUserByCredentials : findUserByCredentials,
         setModel: setModel,
-        findAllWebsitesForUser: findAllWebsitesForUser
+        findAllWebsitesForUser: findAllWebsitesForUser,
+        findUserByFacebookId: findUserByFacebookId
     };
     return api;
 
     function setModel(_model){
         model = _model;
     }
-    
+
+    function findUserByFacebookId(facebookId){
+        return UserModel
+            .findOne({"facebook.id": facebookId});
+    }
+
+
     function createUser(user) {
         return UserModel.create(user);
     }
@@ -31,10 +38,8 @@ module.exports = function () {
         return UserModel.findById(userId);
     }
 
-    function findUserByUsername(username) {
-        return UserModel.find({
-            username: username
-        });
+    function findUserByUsername(uname) {
+        return UserModel.find({"username":uname});
     }
 
     function findUserByCredentials(username, password) {
