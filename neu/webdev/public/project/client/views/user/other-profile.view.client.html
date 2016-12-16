@@ -133,13 +133,13 @@
                     </div>
 
                     <div id="followers" class="tab-pane fade">
-                        <!--<div class="col-xs-12 col-sm-6 col-md-4" ng-repeat = "follower in model.user.followers">-->
-                            <!--<h4>{{follower.username}}</h4>-->
-
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div ng-repeat="follower in model.user.followers">
-                                        <div class="panel panel-default">
+                        <div ng-show="model.user.followers.length === 0" class="alert alert-danger" role="alert">
+                            <span>Currently you have no followers</span>
+                        </div>
+                        <div ng-show="model.user.followers.length > 0" class="row">
+                            <div class="col-xs-12">
+                                <div ng-repeat="follower in model.user.followers">
+                                    <div class="panel panel-default">
                                             <div class="panel-body followersPanel">
                                                 <a ng-click="model.getUserProfile(follower.userId)">
                                                     <h4>{{follower.username}}</h4>
@@ -159,10 +159,10 @@
                     </div>
 
                     <div id="following" class="tab-pane fade">
-                        <!--<div class="col-xs-12 col-sm-6 col-md-4" ng-repeat = "following in model.user.following">-->
-                            <!--<h4>{{following.username}}</h4>-->
-                        <!--</div>-->
-                        <div class="row">
+                        <div ng-show="model.user.following.length === 0" class="alert alert-danger" role="alert">
+                            <span>Currently you are not following anyone</span>
+                        </div>
+                        <div ng-show="model.user.followers.length > 0" class="row">
                             <div class="col-xs-12">
                                 <div ng-repeat="following in model.user.following">
                                     <div class="panel panel-default">
@@ -180,9 +180,9 @@
                     </div>
 
                     <div id="movies" class="tab-pane fade">
-                        <!--<div class="col-xs-12 col-sm-6 col-md-4" ng-repeat = "movie in model.user.moviesReviewed">-->
-                            <!--<h4>{{movie.movieId}}</h4>-->
-                        <!--</div>-->
+                        <div ng-show ="model.user.moviesReviewed.length === 0" class="alert alert-danger" role="alert">
+                            <span>No movies reviewed!!</span>
+                        </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div ng-repeat="movie in model.user.moviesReviewed">
@@ -204,6 +204,9 @@
                     </div>
 
                     <div id="watchlist" class="tab-pane fade">
+                        <div ng-show ="model.user.watchlist.length === 0" class="alert alert-danger" role="alert">
+                            <span>No movies in watchlist!!</span>
+                        </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div ng-repeat="movie in model.user.watchlist">
@@ -218,12 +221,6 @@
                                                         <b>{{movie.movieTitle}}</b>
                                                     </span>
                                             </a>
-                                            <!--<a ng-if="model.isFollowing(following.userId)"-->
-                                            <!--ng-click="model.unfollowUser(following.userId)"-->
-                                            <!--class="btn btn-sm btn-danger pull-right">Unfollow {{following.username}}</a>-->
-                                            <!--<a ng-if="!model.isFollowing(follower.userId)"-->
-                                            <!--ng-click="model.followUser(follower.userId, follower.username)"-->
-                                            <!--class="btn btn-sm btn-success pull-right">Follow {{follower.username}}</a>-->
                                         </div>
                                     </div>
                                 </div>
