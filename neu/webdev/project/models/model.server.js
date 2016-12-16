@@ -1,9 +1,9 @@
 
 module.exports = function() {
     var mongoose = require("mongoose");
-    var connectionString = 'mongodb://localhost/web-dev-fall-project-2016';
+    var connectionString = 'mongodb://rosy1:rosy@ds133398.mlab.com:33398/wamfall';
 
-    mongoose.createConnection(connectionString);
+    mongoose.connect(connectionString);
 
     var models = {
         flixUserModel: require("./user/flixuser.model.server.js")(),

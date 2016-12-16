@@ -3,22 +3,31 @@ var LocalStrategy = require('passport-local').Strategy;
 // var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var bcrypt = require("bcrypt-nodejs");
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 
 module.exports = function(app, models) {
 
     var flixUserModel = models.flixUserModel;
+    app.use(session({
+        secret: "RosyParmar",
+        resave: true,
+        saveUninitialized: true
+    }));
+    app.use(cookieParser());
+    app.use(passport.initialize());
+    app.use(passport.session());
+    passport.use('project', new LocalStrategy(projectLocalStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+
+
 
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
-
-    // app.get("/auth/facebook", passport.authenticate('facebook'));
-    // app.get("/auth/facebook/callback",
-    //     passport.authenticate('facebook', {
-    //         successRedirect: '/assignment/#/user',
-    //         failureRedirect: '/assignment/#/login'
-    //     }));/auth/google
     app.get("/auth/google", passport.authenticate('google', { scope: ['profile', 'email'] }));
     app.get("/auth/google/callback",
         passport.authenticate('google', {
@@ -35,15 +44,14 @@ module.exports = function(app, models) {
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
+    app.get("/api/adminUser", getall);
 
-    passport.use('project', new LocalStrategy(projectLocalStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+
 
     var googleConfig = {
-        clientID     : process.env.GOOGLE_CLIENT_ID,
-        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL  : process.env.GOOGLE_CALLBACK_URL
+        clientID     : "60297288631-rbi5n70tvf6ftdhivrgtk9pdf9pj3kcd.apps.googleusercontent.com",
+        clientSecret : "pn5L2Kv0Fp3SuT6GupZLI5Pe",
+        callbackURL  : "http://localhost:3000/auth/google/callback"
     };
 
     passport.use('google', new GoogleStrategy(googleConfig, googleLogin));
@@ -78,6 +86,7 @@ module.exports = function(app, models) {
     }
 
     function serializeUser(user, done) {
+        console.log("serialize user");
         done(null, user);
     }
 
@@ -93,50 +102,115 @@ module.exports = function(app, models) {
                 }
             );
     }
+    
+    function getall(request, response) {
+        flixUserModel
+            .findalluser()
+            .then(function (userlist) {
+                response.json(userlist);
+            },function(err){
+                response.sendStatus(400);
+            });
+    }
+
 
     function register(request, response) {
         var username = request.body.username;
         var password = request.body.password;
-        // console.log("Register server service");
-        // console.log(username + " " + password);
+        console.log("Register server service");
+        console.log(username + " " + password);
+
         flixUserModel
             .findUserByUsername(username)
             .then(
-                function(user) {
+                function(user){
+                    console.log("username in use");
                     if(user){
-                        // console.log("Server service");
-                        // console.log(user);
-                        response.status(400).send("Username already in use");
-
+                        console.log(user);
+                        response.status(400).send("Username in use");
                         return;
                     }
                     else {
+                        console.log("username in use not so create ");
+                        console.log(request.body);
                         request.body.password = bcrypt.hashSync(request.body.password);
                         return flixUserModel.createUser(request.body);
                     }
                 },
-                function(error) {
-                    response.send(error);
+                function(err) {
+                    console.log("register find by username err");
+                    console.log(err);
+                    response.status(400).send(err);
                 }
             )
             .then(
-                function(user) {
+                function(user){
+
                     if(user) {
-                        //Utility function provided by passport
-                        request.login(user, function(error) {
-                            if(error) {
-                                response.status(400).send(error);
+                        console.log("create user 131 ");console.log(user);
+                        // passport logs in the user and sets a new session for them
+                        request.login(user, function(err){
+                            if(err){
+                                console.log("err in 135 ");console.log(err);
+                                response.status(400).send(err);
                             }
                             else {
+                                console.log("user in 138 ");console.log(user);
                                 response.json(user);
                             }
                         });
                     }
                 },
-                function(error) {
-                    response.status(400).send(error);
+                function(err){
+                    console.log("register -> create err");console.log(err);
+
+                    response.status(400).send(err);
                 }
-            );
+            )
+
+
+        // flixUserModel
+        //     .findUserByUsername(username)
+        //     .then(
+        //         function(user) {
+        //             if(user){
+        //                 console.log("Server service");
+        //                 console.log(user);
+        //                 response.status(400).send("Username already in use");
+        //
+        //                 return;
+        //             }
+        //             else {
+        //                 request.body.password = bcrypt.hashSync(request.body.password);
+        //                 console.log("Server when user not found");
+        //                 console.log(request.body);
+        //                 return flixUserModel.createUser(request.body);
+        //             }
+        //         },
+        //         function(error) {
+        //             response.status(400).send(error);
+        //         }
+        //     )
+        //     .then(
+        //         function(user) {
+        //             console.log("user created log him in "+user);
+        //             if(user) {
+        //                 //Utility function provided by passport
+        //                 request.login(user, function(error) {
+        //                     if(error) {
+        //                         response.status(400).send(error);
+        //                     }
+        //                     else {
+        //
+        //                         response.json(user);
+        //                     }
+        //                 });
+        //             }
+        //         },
+        //         function(error) {
+        //             response.status(400).send(error);
+        //         }
+        //     );
     }
     
     function googleLogin(token, refreshToken, profile, done) {
@@ -197,7 +271,6 @@ module.exports = function(app, models) {
     }
 
     function uploadImage(request, response) {
-        
         var myFile = request.file;
         var userId = request.body.userId;
 
@@ -221,6 +294,7 @@ module.exports = function(app, models) {
             .uploadImage(userId, url)
             .then(
                 function(stat) {
+
                     response
                         .redirect("/project/#/user");
                 },

@@ -4,7 +4,7 @@
         .factory("FlixService", FlixService);
 
     //var apiKey = process.env.TMDB_API_KEY;
-    var urlBase = "https://api.themoviedb.org/3/SEARCH_TERM?api_key=d7ea3d2369812580c63ec5118566acd1"
+    var urlBase = "https://api.themoviedb.org/3/SEARCH_TERM?api_key=a4aafc052062bfda6493a7530e86ca3c"
 
     function FlixService($http) {
         var api = {

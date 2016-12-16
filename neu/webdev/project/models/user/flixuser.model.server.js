@@ -16,7 +16,9 @@ module.exports = function() {
         findGoogleUser: findGoogleUser,
         updateUser: updateUser,
         uploadImage: uploadImage,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        getUsers : getUsers,
+        findalluser: findalluser
 
     };
     return api;
@@ -27,8 +29,17 @@ module.exports = function() {
         });
     }
 
+    function findalluser() {
+        return FlixUser.find();
+    }
+
+
     function deleteUser(userId) {
         return FlixUser.remove({_id: userId});
+    }
+
+    function getUsers(){
+        return FlixUserSchema.find({userType : "user"},'username email', function(err, docs){});
     }
 
     function updateUser(userId, newUser) {
@@ -47,7 +58,7 @@ module.exports = function() {
     }
 
     function findUserByUsername(username) {
-        return FlixUser.findOne({username: username});
+        return FlixUser.findOne({"username": username});
     }
 
     function findUserByCredentials(username, password) {
@@ -59,6 +70,7 @@ module.exports = function() {
     }
 
     function createUser(user){
+        user.userType="user";
         // console.log("user.model.server.createUser()");
         // console.log(user);
         return FlixUser.create(user);

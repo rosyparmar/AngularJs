@@ -9,6 +9,7 @@ module.exports = function() {
         password: String,
         firstName: String,
         lastName: String,
+        userType    : {type: String, enum : ['user','admin']},
         facebook: {
             token: String,
             id: String,

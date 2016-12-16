@@ -1,11 +1,8 @@
 (function() {
-    //In app.js this statement creates the application and here this loads the application so that we can work with it.
-    //If [] is not provided thenit indicates that this is a read operation.
     angular
         .module("Flix")
-        .config(Config); //This is called chaining of function calls
+        .config(Config);
 
-    //$routeProvider object indicates to the framework what we need to configure. In this case - routing
     function Config($routeProvider) {
         $routeProvider
             .when ("/", {
@@ -18,12 +15,10 @@
             })
             .when("/login", {
                 templateUrl: "client/views/user/login.view.client.html",
-                //To make the controller and the corresponding HTML aware that they are associated with each other.
                 controller: "LoginController",
-                //To access the instance of the LoginController in the view. Binds the controller instance to a name
-                //which is used in the view.
                 controllerAs: "model"
             })
+            
             .when("/register", {
                 templateUrl: "client/views/user/register.view.client.html",
                 controller: "RegisterController",
@@ -64,11 +59,8 @@
                 redirectTo: "/home"
             });
 
-        //$q allows to work with promises and asynchronous call
         function checkLoggedIn(FlixUserService, $location, $q, $rootScope) {
-
             var deferred = $q.defer();
-
             FlixUserService
                 .loggedIn()
                 .then(
@@ -92,5 +84,20 @@
             return deferred.promise;
         }
 
+
+        function adminUser($location, $q, $rootScope){
+            var deferred = $q.defer();
+            if($rootScope.currentUser != null){
+                if(!$rootScope.isAdmin){
+                    deferred.reject();
+                    $location.url("/user");
+                }
+                else{
+                    deferred.resolve();
+                }
+            }
+
+            return deferred.promise;
+        }
     }
 })();

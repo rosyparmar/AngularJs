@@ -14,26 +14,44 @@
         vm.followUser = followUser;
         vm.getMovieInfo = getMovieInfo;
         vm.getUserProfile = getUserProfile;
+        vm.addUser = addUser;
+        vm.manageUsers = manageUsers;
+        vm.updateUsers = updateUsers;
+        vm.getalluser = getalluser;
 
-        // var id = $routeParams.uid;
-
+        vm.isAdmin = false;
+        //vm.userslist = [];
         var id = $rootScope.currentUser._id;
-        //vm.userId = id;
+        $rootScope.isAdmin = false;
 
-        console.log("Profile Controller");
-
-        function init() {
+        function init()  {
+            if($rootScope.currentUser.userType === "admin"){
+                vm.isAdmin = true;
+            }
             FlixUserService
                 .findUserById(id)
                 .then(function(response) {
                     vm.user = response.data;
-                    // getFollowersAndFollowing();
-                    // vm.dob = new Date("2012-07-14T01:00:00+01:00").getYear("YYYY");
-                    // console.log(vm.dob);
-
+                    if(vm.isAdmin) {
+                        getalluser();
+                    }
                 });
+            //getalluser();
         }
         init();
+
+        function updateUser(newUser) {
+            FlixUserService
+                .updateUser(id, newUser)
+                .then(
+                    function(response) {
+                        vm.success = "User updated successfully";
+                    },
+                    function(error) {
+                        vm.error = "Unable to update user"
+                    }
+                );
+        }
 
         function isFollowing(id) {
             var follows = false;
@@ -43,7 +61,7 @@
                     break;
                 }
             }
-            return follows;            
+            return follows;
         }
 
         function logout() {
@@ -52,6 +70,7 @@
                 .logout()
                 .then(
                     function(response){
+                        vm.isAdmin = false;
                         $rootScope.currentUser = null;
                         $location.url("/login");
                     },
@@ -74,7 +93,7 @@
 
         }
 
-        function updateUser(newUser) {
+        function updateUsers(newUser) {
             console.log("Hello");
             FlixUserService
                 .updateUser(id, newUser)
@@ -86,7 +105,31 @@
                 })
 
         }
-        
+
+
+        function addUser(uname, pass){
+            var newUser = {
+                username : uname,
+                password : pass
+
+            };
+            ProjectUserService
+                .register(newUser)
+                .then(
+                    function (response) {
+                        var user = response.data;
+                        init();
+                    },
+                    function(err){
+                        vm.error = err;
+                    }
+                );
+        }
+
+        function manageUsers(){
+            $location.url('/user');
+        }
+
         function unfollowUser(userId) {
             for(var i in vm.user.following) {
                 if(vm.user.following[i].userId == userId) {
@@ -97,7 +140,7 @@
             FlixUserService
                 .updateUser(vm.user._id, vm.user)
                 .then(function(stat) {
-                    updateFollowingUser(userId)
+                        updateFollowingUser(userId)
                         init();
                     },
                     function(error) {
@@ -145,7 +188,7 @@
             FlixUserService
                 .updateUser(vm.user._id, vm.user)
                 .then(function(stat) {
-                    updateFollowerUser(userId, followUserObj);
+                        updateFollowerUser(userId, followUserObj);
                         init();
                     },
                     function(error) {
@@ -172,13 +215,25 @@
                     }
                 );
         }
-        
+
         function getUserProfile(userId) {
             $location.url("/user/" + userId);
         }
 
         function getMovieInfo(movieId) {
             $location.url("/movie/" + movieId)
+        }
+
+        function getalluser() {
+            FlixUserService
+                .getall()
+                .then(function (allusers) {
+
+                    vm.userslist = allusers.data;
+                    console.log(vm.userslist);
+                })
+
+
         }
     }
 })();

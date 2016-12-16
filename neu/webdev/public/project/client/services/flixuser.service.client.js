@@ -17,7 +17,9 @@
             findUserByCredentials: findUserByCredentials,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            getUsers: getUsers,
+            getall: getall
             //getUpcomingMovies: getUpcomingMovies
         };
 
@@ -26,11 +28,19 @@
         // function getUpcomingMovies() {
         //         return $http.get(urlBase);
         // }
-        
+        function getall() {
+            return $http.get("/api/adminUser");
+        }
+
         function register(user) {
-            // console.log("Register client service");
-            // console.log(user);
+            // debugger;
             return $http.post("/api/register", user);
+        }
+
+
+        function getUsers(){
+            var url = "/project/api/users/";
+            return $http.get(url);
         }
         
         function loggedIn() {

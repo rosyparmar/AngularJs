@@ -24,7 +24,7 @@
                             response.data.profile_path =
                                 "http://www.baxter.com/assets/images/products/Renal/thumb_image_not_available.png";
                         }
-                        response.data.movie_credits.cast.splice(10, response.data.movie_credits.cast.length - 10);
+                        response.data.movie_credits.cast.splice(10, response.data.movie_credits.cast);
                         for(var i in response.data.movie_credits.cast) {
                             response.data.movie_credits.cast[i].poster_path = 
                                 "https://image.tmdb.org/t/p/w500" + response.data.movie_credits.cast[i].poster_path;

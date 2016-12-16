@@ -6,7 +6,7 @@
             <!--<img src="http://img.informer.com/icons/png/48/35/35971.png"/>-->
             <!--</a>-->
             <a class="navbar-brand topnav" href="#/home">
-                <span class="appTitle">Flix</span>
+                <span class="appTitle">Movies</span>
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -77,9 +77,13 @@
             <span ng-show="registerForm.verifypassword.$invalid && registerForm.$submitted"
                   class="error-display">Please verify password</span>
         </label>
-        <button ng-click="model.createUser(username, password, verifypassword)"
-                type="submit"
-                class="btn btn-primary btn-block">Register</button>
+        <!--<button ng-click="model.createUser(username, password, verifypassword)"-->
+        <!--type="submit"-->
+        <!--class="btn btn-primary btn-block">Register</button>-->
+        <button class="btn btn-primary btn-block" href=""
+                ng-click="model.createUser(username, password, verifypassword)">Register
+        </button>
+
         <a href="#/login"
            class="btn btn-danger btn-block">Cancel</a>
     </form>
