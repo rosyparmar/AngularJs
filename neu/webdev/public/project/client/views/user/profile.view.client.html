@@ -70,7 +70,6 @@
                             Watchlist
                         </a>
                     </li>
-
                     <li>
                         <a ng-show="model.isAdmin" data-toggle="pill" data-target="#ManageUsers">
                             Manage Users
@@ -200,7 +199,7 @@
                 </div>
 
                 <div id="movies" class="tab-pane fade">
-                    <div ng-show ="model.user.following.length === 0" class="alert alert-danger" role="alert">
+                    <div ng-show ="model.user.moviesReviewed.length === 0" class="alert alert-danger" role="alert">
                         <span>No movies reviewed!!</span>
                     </div>
                     <div class="row">
@@ -224,6 +223,9 @@
                 </div>
 
                 <div id="watchlist" class="tab-pane fade">
+                    <div ng-show ="model.user.watchlist.length === 0" class="alert alert-danger" role="alert">
+                        <span>No movies in watchlist!!</span>
+                    </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <div ng-repeat="movie in model.user.watchlist">
@@ -244,6 +246,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <div id="ManageUsers" class="tab-pane fade">
                     <div class="row">

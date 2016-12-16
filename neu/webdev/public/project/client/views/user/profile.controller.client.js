@@ -18,6 +18,7 @@
         vm.manageUsers = manageUsers;
         vm.updateUsers = updateUsers;
         vm.getalluser = getalluser;
+        vm.deleteUser=deleteUser;
 
         vm.isAdmin = false;
         //vm.userslist = [];
@@ -51,6 +52,15 @@
                         vm.error = "Unable to update user"
                     }
                 );
+        }
+
+        function deleteUser(user){
+            FlixUserService
+                .deleteUser(user._id)
+                .then(function(stat){
+                    init();
+                    vm.success = "Success! You have successfully deleted user";
+                })
         }
 
         function isFollowing(id) {
