@@ -14,9 +14,24 @@
 
         var movieImages = [];
         var upComingMovies = [];
-
+        var actionMovies = [];
+        var dramaMovies = [];
+        var comedyMovies = [];
+        var animationMovies = [];
+        var thrillerMovies = [];
 
         function init() {
+
+            FlixService
+                .getAllGenres()
+                .then(
+                    function(response) {
+                        vm.genres = response.data.genres;
+                    },
+                    function(error) {
+                        vm.error = "Unable to retrieve genres";
+                    }
+                );
             FlixService
                 .getUpcomingMovies("movie/upcoming")
                 .then(
@@ -33,7 +48,42 @@
                             upComingMovies.push(resultSet[i]);
                         }
                         vm.upcomingMovies = upComingMovies;
-                        //console.log(vm.upcomingMovies);
+
+
+                        for(var m in vm.upcomingMovies) {
+                            // for(var genre in resultSet[m].genre_ids){
+                            //
+                            // }
+
+                            var currentMovieGenre = getGenreName(resultSet[m].genre_ids[0]);
+                            if(currentMovieGenre == 'Action' && actionMovies.length < 3){
+                                actionMovies.push(resultSet[m]);
+                            }
+
+                            if(currentMovieGenre === 'Comedy'&& comedyMovies.length < 3) {
+                                comedyMovies.push(resultSet[m]);
+                            }
+
+                            if(currentMovieGenre === 'Thriller' && thrillerMovies.length < 3) {
+                                thrillerMovies.push(resultSet[m]);
+                            }
+
+                            if(currentMovieGenre === 'Drama' && dramaMovies.length < 3) {
+                                dramaMovies.push(resultSet[m]);
+                            }
+
+                            if(currentMovieGenre === 'Animation' && animationMovies.length < 3) {
+                                animationMovies.push(resultSet[m]);
+                            }
+
+                        }
+
+                        vm.actionMovies = actionMovies;
+                        vm.comedyMovies = comedyMovies;
+                        vm.thrillerMovies = thrillerMovies;
+                        vm.dramaMovies = dramaMovies;
+                        vm.animationMovies = animationMovies;
+
                     }
                 );
 
